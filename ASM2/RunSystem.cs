@@ -6,6 +6,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using ASM2.Factory;
+using ASM2.NewFolder;
+using ASM2.NewFolder1;
 
 namespace ASM2
 {
@@ -37,13 +40,14 @@ namespace ASM2
                 Console.WriteLine("+--------------------------------------------+");
                 Console.WriteLine("");
                 Console.WriteLine("Please choose one");
-                string choiceMenu1;
-                choiceMenu1 = Console.ReadLine();
-                if (Regex.IsMatch(choiceMenu1, "[0-9]") && choiceMenu1 != "0")
+                int choiceMenu1;
+                try
                 {
+                    choiceMenu1 = int.Parse(Console.ReadLine());
+
                     switch (choiceMenu1)
                     {
-                        case "1":
+                        case 1:
                             bool backToLevel1 = false;
 
                             while (!backToLevel1)
@@ -58,13 +62,14 @@ namespace ASM2
                                 Console.WriteLine("+--------------------------------------------+");
                                 Console.WriteLine("");
                                 Console.WriteLine("Please choose one");
-                                string choiceMenu2;
-                                choiceMenu2 = Console.ReadLine();
-                                if (Regex.IsMatch(choiceMenu2, "[0-9]") && choiceMenu2 != "0")
+                                int choiceMenu2;
+                                try
                                 {
+                                    choiceMenu2 = int.Parse(Console.ReadLine());
+
                                     switch (choiceMenu2)
                                     {
-                                        case "1":
+                                        case 1:
                                             //logic
                                             factory = new IronKitchenFactory();
                                             //
@@ -81,13 +86,14 @@ namespace ASM2
                                                 Console.WriteLine("+--------------------------------------------+");
                                                 Console.WriteLine("");
                                                 Console.WriteLine("Please choose one");
-                                                string choiceMenu3;
-                                                choiceMenu3 = Console.ReadLine();
-                                                if (Regex.IsMatch(choiceMenu3, "[0-9]") && choiceMenu3 != "0")
+                                                int choiceMenu3;
+                                                try
                                                 {
+                                                    choiceMenu3 = int.Parse(Console.ReadLine());
+
                                                     switch (choiceMenu3)
                                                     {
-                                                        case "1":
+                                                        case 1:
                                                             //logic
                                                             panProduct = factory.CreatePan();
                                                             panProduct.Name = "Pan";
@@ -98,7 +104,7 @@ namespace ASM2
                                                             backToLevel1 = true;
                                                             //
                                                             break;
-                                                        case "2":
+                                                        case 2:
                                                             //logic
                                                             potProduct = factory.CreatePot();
                                                             potProduct.Name = "Pot";
@@ -109,7 +115,7 @@ namespace ASM2
                                                             backToLevel1 = true;
                                                             //
                                                             break;
-                                                        case "3":
+                                                        case 3:
                                                             backToLevel2 = true;
                                                             break;
                                                         default:
@@ -117,13 +123,13 @@ namespace ASM2
                                                             break;
                                                     }
                                                 }
-                                                else
+                                                catch (System.Exception e)
                                                 {
                                                     invalidNotification();
                                                 }
                                             }
                                             break;
-                                        case "2":
+                                        case 2:
                                             //logic
                                             factory = new InoxKitchenFactory();
                                             //
@@ -140,13 +146,14 @@ namespace ASM2
                                                 Console.WriteLine("+--------------------------------------------+");
                                                 Console.WriteLine("");
                                                 Console.WriteLine("Please choose one");
-                                                string choiceMenu3;
-                                                choiceMenu3 = Console.ReadLine();
-                                                if (Regex.IsMatch(choiceMenu3, "[0-9]") && choiceMenu3 != "0")
+                                                int choiceMenu3;
+                                                try
                                                 {
+                                                    choiceMenu3 = int.Parse(Console.ReadLine());
+
                                                     switch (choiceMenu3)
                                                     {
-                                                        case "1":
+                                                        case 1:
                                                             //logic
                                                             panProduct = factory.CreatePan();
                                                             panProduct.Name = "Pan";
@@ -157,7 +164,7 @@ namespace ASM2
                                                             backToLevel1 = true;
                                                             //
                                                             break;
-                                                        case "2":
+                                                        case 2:
                                                             //logic
                                                             potProduct = factory.CreatePot();
                                                             potProduct.Name = "Pot";
@@ -168,7 +175,7 @@ namespace ASM2
                                                             backToLevel1 = true;
                                                             //
                                                             break;
-                                                        case "3":
+                                                        case 3:
                                                             backToLevel2_1 = true;
                                                             break;
                                                         default:
@@ -176,13 +183,13 @@ namespace ASM2
                                                             break;
                                                     }
                                                 }
-                                                else
+                                                catch (System.Exception e)
                                                 {
                                                     invalidNotification();
                                                 }
                                             }
                                             break;
-                                        case "3":
+                                        case 3:
                                             backToLevel1 = true;
                                             break;
                                         default:
@@ -190,30 +197,29 @@ namespace ASM2
                                             break;
                                     }
                                 }
-                                else
+                                catch (System.Exception e)
                                 {
                                     invalidNotification();
                                 }
                             }
                             break;
-                        case "2":
-                             productList();
+                        case 2:
+                            productList();
                             Console.ReadLine();
                             break;
-                        case "3":
+                        case 3:
                             productList();
                             Console.WriteLine("Choose the product you want to edit:");
-                            string choiceEdit;
-                            choiceEdit = Console.ReadLine();
-
-
-                            if (Regex.IsMatch(choiceEdit, "[0-9]") && choiceEdit != "0")
+                            int choiceEdit;
+                            try
                             {
+                                choiceEdit = int.Parse(Console.ReadLine());
+
                                 //logic choose the product list
                                 bool PanChoice = false;
                                 bool PotChoice = false;
                                 // chose and choice
-                                int choseEdit = (int.Parse(choiceEdit) - 1);
+                                int choseEdit = (choiceEdit - 1);
                                 if (choseEdit < panList.Count)
                                 {
                                     for (int i = 0; i < panList.Count; i++)
@@ -255,13 +261,13 @@ namespace ASM2
                                         Console.WriteLine("+--------------------------------------------+");
                                         Console.WriteLine("");
                                         Console.WriteLine("Please choose one");
-                                        string choiceEditItem;
-                                        choiceEditItem = Console.ReadLine();
-                                        if (Regex.IsMatch(choiceEditItem, "[0-9]") && choiceEditItem != "0")
+                                        int choiceEditItem;
+                                        try
                                         {
+                                            choiceEditItem = int.Parse(Console.ReadLine());
                                             switch (choiceEditItem)
                                             {
-                                                case "1":
+                                                case 1:
                                                     bool edit_size = false;
                                                     while (!edit_size)
                                                     {
@@ -276,42 +282,46 @@ namespace ASM2
                                                         Console.WriteLine("+--------------------------------------------+");
                                                         Console.WriteLine("");
                                                         Console.WriteLine("Please choose one");
-                                                        string kitchenToolEdit;
-                                                        kitchenToolEdit = Console.ReadLine();
-                                                        if (Regex.IsMatch(choiceEditItem, "[0-9]") && choiceEditItem != "0")
+                                                        int kitchenToolEdit = 0;
+                                                        try
                                                         {
+                                                            kitchenToolEdit = int.Parse(Console.ReadLine());
+
                                                             switch (kitchenToolEdit)
                                                             {
-                                                                case "1":
+                                                                case 1:
                                                                     panList[editing].Size = "20cm";
                                                                     edit_size = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "2":
+                                                                case 2:
                                                                     panList[editing].Size = "24cm";
                                                                     edit_size = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "3":
+                                                                case 3:
                                                                     panList[editing].Size = "28cm";
                                                                     edit_size = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "4":
+                                                                case 4:
                                                                     edit_size = true;
+                                                                    break;
+                                                                default:
+                                                                    invalidNotification();
                                                                     break;
                                                             }
                                                         }
-                                                        else
+                                                        catch (System.Exception e)
                                                         {
                                                             invalidNotification();
                                                         }
                                                     }
                                                     break;
-                                                case "2":
+                                                case 2:
                                                     bool edit_status = false;
                                                     while (!edit_status)
                                                     {
@@ -326,38 +336,46 @@ namespace ASM2
                                                         Console.WriteLine("+--------------------------------------------+");
                                                         Console.WriteLine("");
                                                         Console.WriteLine("Please choose one");
-                                                        string EditStatus;
-                                                        EditStatus = Console.ReadLine();
-                                                        if (Regex.IsMatch(EditStatus, "[0-9]") && EditStatus != "0")
+                                                        int EditStatus;
+                                                        try
                                                         {
+                                                            EditStatus = int.Parse(Console.ReadLine());
+
                                                             switch (EditStatus)
                                                             {
-                                                                case "1":
+                                                                case 1:
                                                                     panList[editing].Mass = "1Kg";
                                                                     edit_status = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "2":
+                                                                case 2:
                                                                     panList[editing].Mass = "1.5Kg";
                                                                     edit_status = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "3":
+                                                                case 3:
                                                                     panList[editing].Mass = "2.5Kg";
                                                                     edit_status = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "4":
+                                                                case 4:
                                                                     edit_status = true;
+                                                                    break;
+                                                                default:
+                                                                    invalidNotification();
                                                                     break;
                                                             }
                                                         }
+                                                        catch (System.Exception e)
+                                                        {
+                                                            invalidNotification();
+                                                        }
                                                     }
                                                     break;
-                                                case "3":
+                                                case 3:
                                                     edit_while = true;
                                                     break;
                                                 default:
@@ -365,7 +383,7 @@ namespace ASM2
                                                     break;
                                             }
                                         }
-                                        else
+                                        catch (System.Exception e)
                                         {
                                             invalidNotification();
                                         }
@@ -388,13 +406,14 @@ namespace ASM2
                                         Console.WriteLine("+--------------------------------------------+");
                                         Console.WriteLine("");
                                         Console.WriteLine("Please choose one");
-                                        string choiceEditItem;
-                                        choiceEditItem = Console.ReadLine();
-                                        if (Regex.IsMatch(choiceEditItem, "[0-9]") && choiceEditItem != "0")
+                                        int choiceEditItem;
+                                        try
                                         {
+                                            choiceEditItem = int.Parse(Console.ReadLine());
+
                                             switch (choiceEditItem)
                                             {
-                                                case "1":
+                                                case 1:
                                                     bool edit_size = false;
                                                     while (!edit_size)
                                                     {
@@ -409,42 +428,46 @@ namespace ASM2
                                                         Console.WriteLine("+--------------------------------------------+");
                                                         Console.WriteLine("");
                                                         Console.WriteLine("Please choose one");
-                                                        string kitchenToolEdit;
-                                                        kitchenToolEdit = Console.ReadLine();
-                                                        if (Regex.IsMatch(choiceEditItem, "[0-9]") && choiceEditItem != "0")
+                                                        int kitchenToolEdit;
+                                                        try
                                                         {
+                                                            kitchenToolEdit = int.Parse(Console.ReadLine());
+
                                                             switch (kitchenToolEdit)
                                                             {
-                                                                case "1":
+                                                                case 1:
                                                                     potList[editing].Size = "20cm";
                                                                     edit_size = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "2":
+                                                                case 2:
                                                                     potList[editing].Size = "24cm";
                                                                     edit_size = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "3":
+                                                                case 3:
                                                                     potList[editing].Size = "28cm";
                                                                     edit_size = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "4":
+                                                                case 4:
                                                                     edit_size = true;
+                                                                    break;
+                                                                default:
+                                                                    invalidNotification();
                                                                     break;
                                                             }
                                                         }
-                                                        else
+                                                        catch (System.Exception e)
                                                         {
                                                             invalidNotification();
                                                         }
                                                     }
                                                     break;
-                                                case "2":
+                                                case 2:
                                                     bool edit_status = false;
                                                     while (!edit_status)
                                                     {
@@ -453,45 +476,53 @@ namespace ASM2
                                                         Console.WriteLine("|                  EDIT MASS                 |");
                                                         Console.WriteLine("+--------------------------------------------+");
                                                         Console.WriteLine("| 1. 1Kg                                     |");
-                                                        Console.WriteLine("| 1. 1.5Kg                                   |");
+                                                        Console.WriteLine("| 2. 1.5Kg                                   |");
                                                         Console.WriteLine("| 3. 2.5Kg                                   |");
                                                         Console.WriteLine("| 4. Back                                    |");
                                                         Console.WriteLine("+--------------------------------------------+");
                                                         Console.WriteLine("");
                                                         Console.WriteLine("Please choose one");
-                                                        string EditStatus;
-                                                        EditStatus = Console.ReadLine();
-                                                        if (Regex.IsMatch(EditStatus, "[0-9]") && EditStatus != "0")
+                                                        int EditStatus;
+                                                        try
                                                         {
+                                                            EditStatus = int.Parse(Console.ReadLine());
+
                                                             switch (EditStatus)
                                                             {
-                                                                case "1":
+                                                                case 1:
                                                                     potList[editing].Mass = "1Kg";
                                                                     edit_status = true;
                                                                     edit_while = true;
                                                                     Console.Clear();
                                                                     editNotification();
                                                                     break;
-                                                                case "2":
+                                                                case 2:
                                                                     potList[editing].Mass = "1.5Kg";
                                                                     edit_status = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "3":
+                                                                case 3:
                                                                     potList[editing].Mass = "2.5Kg";
                                                                     edit_status = true;
                                                                     edit_while = true;
                                                                     editNotification();
                                                                     break;
-                                                                case "4":
+                                                                case 4:
                                                                     edit_status = true;
+                                                                    break;
+                                                                default:
+                                                                    invalidNotification();
                                                                     break;
                                                             }
                                                         }
+                                                        catch (System.Exception e)
+                                                        {
+                                                            invalidNotification();
+                                                        }
                                                     }
                                                     break;
-                                                case "3":
+                                                case 3:
                                                     edit_while = true;
                                                     break;
                                                 default:
@@ -499,31 +530,34 @@ namespace ASM2
                                                     break;
                                             }
                                         }
-                                        else
+                                        catch (System.Exception e)
                                         {
                                             invalidNotification();
                                         }
                                     }
-
                                 }
                                 else
                                 {
                                     invalidNotification();
                                 }
                             }
-
+                            catch (System.Exception e)
+                            {
+                                invalidNotification();
+                            }
                             break;
-                        case "4":
+                        case 4:
                             productList();
                             Console.WriteLine("Choose the product you want to delete:");
-                            string choiceDelete;
-                            choiceDelete = Console.ReadLine();
-                            if (Regex.IsMatch(choiceDelete, "[0-9]") && choiceDelete != "0")
+                            int choiceDelete;
+                            try
                             {
+                                choiceDelete = int.Parse(Console.ReadLine());
+
                                 bool PanChoice = false;
                                 bool PotChoice = false;
                                 // chose and choice
-                                int choseEdit = (int.Parse(choiceDelete) - 1);
+                                int choseEdit = (choiceDelete - 1);
                                 if (choseEdit < panList.Count)
                                 {
                                     for (int i = 0; i < panList.Count; i++)
@@ -560,18 +594,23 @@ namespace ASM2
                                     deleteNotification();
                                 }
                             }
+                            catch (System.Exception e)
+                            {
+                                invalidNotification();
+                            }
                             break;
-                        case "5":
+                        case 5:
                             productList();
                             Console.WriteLine("Choose the product you want to test:");
-                            string choiceTest;
-                            choiceTest = Console.ReadLine();
-                            if (Regex.IsMatch(choiceTest, "[0-9]") && choiceTest != "0")
+                            int choiceTest;
+                            try
                             {
+                                choiceTest = int.Parse(Console.ReadLine());
+
                                 bool PanChoice = false;
                                 bool PotChoice = false;
                                 // chose and choice
-                                int choseEdit = (int.Parse(choiceTest) - 1);
+                                int choseEdit = (choiceTest - 1);
                                 if (choseEdit < panList.Count)
                                 {
                                     for (int i = 0; i < panList.Count; i++)
@@ -610,45 +649,145 @@ namespace ASM2
                                             Console.WriteLine("+--------------------------------------------+");
                                             Console.WriteLine("| 1. Increase the temperature.               |");
                                             Console.WriteLine("| 2. Lower the temperature.                  |");
-                                            Console.WriteLine("| 3. Back                                    |");
+                                            Console.WriteLine("| 3. Test fry meat                           |");
+                                            Console.WriteLine("| 4. Back                                    |");
                                             Console.WriteLine("+--------------------------------------------+");
                                             Console.WriteLine("");
                                             Console.WriteLine("Please choose one");
-                                            string testing;
-                                            testing = Console.ReadLine();
-                                            if (Regex.IsMatch(testing, "[0-9]") && testing != "0")
+                                            int testing;
+                                            try
                                             {
+                                                testing = int.Parse(Console.ReadLine());
+
                                                 switch (testing)
                                                 {
-                                                    case "1":
-                                                        double firstTemperature;
-                                                        double secondTemperature;
-                                                        Console.Clear();
-                                                        Console.WriteLine("+--------------------------------------------+");
-                                                        Console.WriteLine("|    Testing with Increase the temperature   |");
-                                                        Console.WriteLine("+--------------------------------------------+");
-                                                        Console.WriteLine("Input your first temperature: ");
-                                                        firstTemperature = double.Parse(Console.ReadLine());
-                                                        Console.WriteLine("Input your second temperature: ");
-                                                        secondTemperature = double.Parse(Console.ReadLine());
+                                                    case 1:
+                                                        double firstTemperature = 0;
+                                                        double secondTemperature = 0;
+                                                        double checkValid;
+                                                        bool loop = false;
+                                                        while (!loop)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("|    Testing with Increase the temperature   |");
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("Input your first temperature: ");
+                                                            try
+                                                            {
+                                                                checkValid = double.Parse(Console.ReadLine());
+                                                                firstTemperature = checkValid;
+                                                                loop = true;
+                                                            }
+                                                            catch (System.Exception e)
+                                                            {
+                                                                invalidNotification();
+                                                            }
+                                                        }
+                                                        while (loop)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.WriteLine("Input your second temperature: ");
+                                                            try
+                                                            {
+                                                                checkValid = double.Parse(Console.ReadLine());
+                                                                secondTemperature = checkValid;
+                                                                loop = false;
+                                                            }
+                                                            catch (System.Exception e)
+                                                            {
+                                                                invalidNotification();
+                                                            }
+                                                        }
+                                                        Console.WriteLine("");
+                                                        Console.WriteLine("");
                                                         Console.WriteLine("The time Increase the temperature with power is 600W: ");
-                                                        Console.WriteLine(Math.Round(panList[editing].increaseTemperatrue(firstTemperature, secondTemperature)) + " second");
+                                                        Console.WriteLine(changeToMinute(Math.Round(panList[editing].increaseTemperatrue(firstTemperature, secondTemperature))));
                                                         Console.ReadLine();
                                                         break;
-                                                    case "2":
-                                                        Console.Clear();
-                                                        Console.WriteLine("+--------------------------------------------+");
-                                                        Console.WriteLine("|    Testing with Decrease the temperature   |");
-                                                        Console.WriteLine("+--------------------------------------------+");
-                                                        Console.WriteLine("Input your first temperature: ");
-                                                        firstTemperature = double.Parse(Console.ReadLine());
-                                                        Console.WriteLine("Input your second temperature: ");
-                                                        secondTemperature = double.Parse(Console.ReadLine());
+                                                    case 2:
+                                                        loop = false;
+                                                        firstTemperature = 0;
+                                                        secondTemperature = 0;
+                                                        while (!loop)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("|    Testing with Decrease the temperature   |");
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("Input your first temperature: ");
+                                                            try
+                                                            {
+                                                                checkValid = double.Parse(Console.ReadLine());
+                                                                firstTemperature = checkValid;
+                                                                loop = true;
+                                                            }
+                                                            catch (System.Exception e)
+                                                            {
+                                                                invalidNotification();
+                                                            }
+                                                        }
+                                                        while (loop)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.WriteLine("");
+                                                            Console.WriteLine("");
+                                                            Console.WriteLine("Input your second temperature: ");
+                                                            try
+                                                            {
+                                                                checkValid = double.Parse(Console.ReadLine());
+
+                                                                secondTemperature = checkValid;
+                                                                loop = false;
+                                                            }
+                                                            catch (System.Exception e)
+                                                            {
+                                                                invalidNotification();
+                                                            }
+                                                        }
                                                         Console.WriteLine("The time decrease the temperature: ");
-                                                        Console.WriteLine(Math.Round(panList[editing].decreaseTemperatrue(firstTemperature, secondTemperature)) + " second");
+                                                        Console.WriteLine(changeToMinute(Math.Round(panList[editing].decreaseTemperatrue(firstTemperature, secondTemperature))));
                                                         Console.ReadLine();
                                                         break;
-                                                    case "3":
+                                                    case 3:
+                                                        loop = false;
+                                                        double meatMass = 0;
+                                                        double fitMass = 0;
+                                                        while (!loop)
+                                                        {
+                                                            if (panList[editing].Size == "20cm")
+                                                            {
+                                                                fitMass = 300.0;
+                                                            }
+                                                            if (panList[editing].Size == "24cm")
+                                                            {
+                                                                fitMass = 400.0;
+                                                            }
+                                                            if (panList[editing].Size == "28cm")
+                                                            {
+                                                                fitMass = 500.0;
+                                                            }
+                                                            Console.Clear();
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("|               Testing fry meat             |");
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("Input your meat mass (g): ");
+                                                            try
+                                                            {
+                                                                checkValid = double.Parse(Console.ReadLine());
+                                                                meatMass = checkValid;
+                                                                loop = true;
+                                                            }
+                                                            catch (System.Exception e)
+                                                            {
+                                                                invalidNotification();
+                                                            }
+                                                        }
+                                                        Console.WriteLine("The time to finish with " + meatMass + "g with size pan = " + panList[editing].Size + " :");
+                                                        Console.WriteLine(changeToMinute(Math.Round(panList[editing].fryMeat(meatMass, fitMass))));
+                                                        Console.ReadLine();
+                                                        break;
+                                                    case 4:
                                                         panTest = true;
                                                         break;
                                                     default:
@@ -656,7 +795,7 @@ namespace ASM2
                                                         break;
                                                 }
                                             }
-                                            else
+                                            catch (System.Exception e)
                                             {
                                                 invalidNotification();
                                             }
@@ -686,45 +825,144 @@ namespace ASM2
                                             Console.WriteLine("+--------------------------------------------+");
                                             Console.WriteLine("| 1. Increase the temperature.               |");
                                             Console.WriteLine("| 2. Lower the temperature.                  |");
-                                            Console.WriteLine("| 3. Back                                    |");
+                                            Console.WriteLine("| 3. Test boiling meat                       |");
+                                            Console.WriteLine("| 4. Back                                    |");
                                             Console.WriteLine("+--------------------------------------------+");
                                             Console.WriteLine("");
                                             Console.WriteLine("Please choose one");
-                                            string testing;
-                                            testing = Console.ReadLine();
-                                            if (Regex.IsMatch(testing, "[0-9]") && testing != "0")
+                                            int testing;
+                                            try
                                             {
+                                                testing = int.Parse(Console.ReadLine());
+
                                                 switch (testing)
                                                 {
-                                                    case "1":
-                                                        double firstTemperature;
-                                                        double secondTemperature;
-                                                        Console.Clear();
-                                                        Console.WriteLine("+--------------------------------------------+");
-                                                        Console.WriteLine("|    Testing with Increase the temperature   |");
-                                                        Console.WriteLine("+--------------------------------------------+");
-                                                        Console.WriteLine("Input your first temperature: ");
-                                                        firstTemperature = double.Parse(Console.ReadLine());
-                                                        Console.WriteLine("Input your second temperature: ");
-                                                        secondTemperature = double.Parse(Console.ReadLine());
+                                                    case 1:
+                                                        double firstTemperature = 0;
+                                                        double secondTemperature = 0;
+                                                        double checkValid;
+                                                        bool loop = false;
+                                                        while (!loop)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("|    Testing with Increase the temperature   |");
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("Input your first temperature: ");
+                                                            try
+                                                            {
+                                                                checkValid = double.Parse(Console.ReadLine());
+                                                                firstTemperature = checkValid;
+                                                                loop = true;
+                                                            }
+                                                            catch (System.Exception e)
+                                                            {
+                                                                invalidNotification();
+                                                            }
+                                                        }
+                                                        while (loop)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.WriteLine("Input your second temperature: ");
+                                                            try
+                                                            {
+                                                                checkValid = double.Parse(Console.ReadLine());
+
+                                                                secondTemperature = checkValid;
+                                                                loop = false;
+                                                            }
+                                                            catch (System.Exception e)
+                                                            {
+                                                                invalidNotification();
+                                                            }
+                                                        }
                                                         Console.WriteLine("The time Increase the temperature with power is 600W: ");
-                                                        Console.WriteLine(Math.Round(potList[editing].increaseTemperatrue(firstTemperature, secondTemperature)) + " second");
+                                                        Console.WriteLine(changeToMinute(Math.Round(potList[editing].increaseTemperatrue(firstTemperature, secondTemperature))));
                                                         Console.ReadLine();
                                                         break;
-                                                    case "2":
-                                                        Console.Clear();
-                                                        Console.WriteLine("+--------------------------------------------+");
-                                                        Console.WriteLine("|    Testing with Decrease the temperature   |");
-                                                        Console.WriteLine("+--------------------------------------------+");
-                                                        Console.WriteLine("Input your first temperature: ");
-                                                        firstTemperature = double.Parse(Console.ReadLine());
-                                                        Console.WriteLine("Input your second temperature: ");
-                                                        secondTemperature = double.Parse(Console.ReadLine());
+                                                    case 2:
+                                                        loop = false;
+                                                        firstTemperature = 0;
+                                                        secondTemperature = 0;
+                                                        while (!loop)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("|    Testing with Decrease the temperature   |");
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("Input your first temperature: ");
+                                                            try
+                                                            {
+                                                                checkValid = double.Parse(Console.ReadLine());
+                                                                firstTemperature = checkValid;
+                                                                loop = true;
+                                                            }
+                                                            catch (System.Exception e)
+                                                            {
+                                                                invalidNotification();
+                                                            }
+                                                        }
+                                                        while (loop)
+                                                        {
+                                                            Console.Clear();
+                                                            Console.WriteLine("");
+                                                            Console.WriteLine("");
+                                                            Console.WriteLine("Input your second temperature: ");
+                                                            try
+                                                            {
+                                                                checkValid = double.Parse(Console.ReadLine());
+
+                                                                secondTemperature = checkValid;
+                                                                loop = false;
+                                                            }
+                                                            catch (System.Exception e)
+                                                            {
+                                                                invalidNotification();
+                                                            }
+                                                        }
                                                         Console.WriteLine("The time to decrese the temperature: ");
-                                                        Console.WriteLine(Math.Round(potList[editing].decreaseTemperatrue(firstTemperature, secondTemperature)) + " second");
+                                                        Console.WriteLine(changeToMinute(Math.Round(potList[editing].decreaseTemperatrue(firstTemperature, secondTemperature))));
                                                         Console.ReadLine();
                                                         break;
-                                                    case "3":
+                                                    case 3:
+                                                        loop = false;
+                                                        double meatMass = 0;
+                                                        double fitMass = 0;
+                                                        while (!loop)
+                                                        {
+                                                            if (potList[editing].Size == "20cm")
+                                                            {
+                                                                fitMass = 800.0;
+                                                            }
+                                                            if (potList[editing].Size == "24cm")
+                                                            {
+                                                                fitMass = 1000.0;
+                                                            }
+                                                            if (potList[editing].Size == "28cm")
+                                                            {
+                                                                fitMass = 1100.0;
+                                                            }
+                                                            Console.Clear();
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("|            Testing boiling meat            |");
+                                                            Console.WriteLine("+--------------------------------------------+");
+                                                            Console.WriteLine("Input your meat mass (g): ");
+                                                            try
+                                                            {
+                                                                checkValid = double.Parse(Console.ReadLine());
+                                                                meatMass = checkValid;
+                                                                loop = true;
+                                                            }
+                                                            catch (System.Exception e)
+                                                            {
+                                                                invalidNotification();
+                                                            }
+                                                        }
+                                                        Console.WriteLine("The time to finish with " + meatMass + "g " + "with size pot = " + potList[editing].Size + " :");
+                                                        Console.WriteLine(changeToMinute(Math.Round(potList[editing].boilingMeat(meatMass, fitMass))));
+                                                        Console.ReadLine();
+                                                        break;
+                                                    case 4:
                                                         potTest = true;
                                                         break;
                                                     default:
@@ -732,7 +970,7 @@ namespace ASM2
                                                         break;
                                                 }
                                             }
-                                            else
+                                            catch (System.Exception e)
                                             {
                                                 invalidNotification();
                                             }
@@ -750,8 +988,12 @@ namespace ASM2
                                     }
                                 }
                             }
+                            catch (System.Exception e)
+                            {
+                                invalidNotification();
+                            }
                             break;
-                        case "6":
+                        case 6:
                             exit = true;
                             Console.Clear();
                             Console.WriteLine("");
@@ -765,7 +1007,7 @@ namespace ASM2
                             break;
                     }
                 }
-                else
+                catch (System.Exception e)
                 {
                     invalidNotification();
                 }
@@ -867,6 +1109,12 @@ namespace ASM2
                     return space;
                 }
                 return space;
+            }
+            string changeToMinute(double value)
+            {
+                double minute = value / 60;
+                double second = value % 60;
+                return Math.Round(minute) + " minute + " + Math.Round(second) + " second";
             }
         }
     }
